@@ -1,0 +1,29 @@
+{
+  "name": "namaste-food",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/febin123/namasteFoodDelivery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/febin123/namasteFoodDelivery/issues"
+  },
+  "homepage": "https://github.com/febin123/namasteFoodDelivery#readme",
+  "description": ""
+}

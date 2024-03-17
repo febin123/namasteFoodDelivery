@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { resObj } from "../utils/constants"
 import RestaurantCard from './RestaurantCard';
+import Shimmer from "./Shimmer";
 
 const Body=()=>{
 
-    const[listOfRestaurant,setListOfRestaurant]=useState(resObj)
+    const[listOfRestaurant,setListOfRestaurant]=useState([])
 
     useEffect(()=>{
         fetchData()
@@ -17,9 +18,15 @@ const Body=()=>{
         console.log(json)
         console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
 
-        setListOfRestaurant(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+        setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
     console.log("Body rendered")
+
+    if(listOfRestaurant.length==0){
+        return(
+            <Shimmer/>
+        )
+    }
     return(
         <div className='body'>
             <div className="filter">

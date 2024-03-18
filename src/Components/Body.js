@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { resObj } from "../utils/constants"
 import RestaurantCard from './RestaurantCard';
 import Shimmer from "./Shimmer";
 
@@ -7,6 +6,8 @@ const Body=()=>{
 
     const[listOfRestaurant,setListOfRestaurant]=useState([])
 
+    const[searchRes,setSearchRes]=useState([])
+    const[searchText,setSearchText]=useState("")
     useEffect(()=>{
         fetchData()
     },[])
@@ -16,9 +17,10 @@ const Body=()=>{
         
         const json=await data.json()
         console.log(json)
-        console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+        // console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
 
         setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setSearchRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
     console.log("Body rendered")
 
@@ -30,15 +32,22 @@ const Body=()=>{
     return(
         <div className='body'>
             <div className="filter">
+                <div className="search">
+                    <input type="text" className="search-box" value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
+                    <button onClick={()=>{
+                    const searchRestaurant=listOfRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()))
+                    setSearchRes(searchRestaurant)
+                    }}>Search</button>
+                </div>
                 <button className="filter-btn" onClick={()=>{
                     const filteredList=listOfRestaurant.filter((rest) => rest.info.avgRating > 4);
                     // console.log(resObj)
-                    setListOfRestaurant(filteredList)
+                    setSearchRes(filteredList)
                 }}>Top Rated Restaurant</button>
             </div>
             <div className="res-container">
               {
-                listOfRestaurant.map((res=>
+                searchRes.map((res=>
                     <RestaurantCard key={res.info.id} resData={res}/>))
               }
             

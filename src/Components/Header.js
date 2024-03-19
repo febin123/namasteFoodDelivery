@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Link } from "react-router-dom"
 const Header=()=>{
     const [login,setLogin]=useState("LogIn")
     return(
@@ -9,9 +9,9 @@ const Header=()=>{
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Contact Us</li>
+                    <li> <Link to='/'>Home</Link> </li>
+                    <li> <Link to='/about'>About us</Link> </li>
+                    <li> <Link to='/contact'>Contact Us</Link> </li>
                     <li>Cart</li>
                 </ul>
             </div>

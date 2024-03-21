@@ -39,21 +39,21 @@ const Body=()=>{
     }
     return(
         <div className='body'>
-            <div className="filter">
+            <div className="filter flex">
                 <div className="search">
                     <input type="text" className="search-box" value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
-                    <button onClick={()=>{
+                    <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={()=>{
                     const searchRestaurant=listOfRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()))
                     setSearchRes(searchRestaurant)
                     }}>Search</button>
                 </div>
-                <button className="filter-btn" onClick={()=>{
+                <button className="px-4 py-2 bg-gray-100 m-4 rounded-lg" onClick={()=>{
                     const filteredList=listOfRestaurant.filter((rest) => rest.info.avgRating > 4);
                     // console.log(resObj)
                     setSearchRes(filteredList)
                 }}>Top Rated Restaurant</button>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap">
               {
                 searchRes.map((res=>
                    <Link  key={res.info.id} to={"/restaurants/"+res.info.id}>

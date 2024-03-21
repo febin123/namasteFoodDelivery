@@ -5,17 +5,16 @@ const Header=()=>{
     const [login,setLogin]=useState("LogIn")
     const onlineStatus=useOnlineStatus()
     return(
-        <div className='header'>
+        <div className='flex justify-between bg-pink-100 shadow-lg mb-2 sm:bg-yellow-50'>
             <div className='logo-container'> 
-                <img className='logo' src="https://img.freepik.com/premium-vector/food-pin-app-icon-restaurant-location-logo-illustration_709422-33.jpg?w=740" alt=""/>
+                <img className='w-20' src="https://img.freepik.com/premium-vector/food-pin-app-icon-restaurant-location-logo-illustration_709422-33.jpg?w=740" alt=""/>
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li> <Link to='/'>Home</Link> </li>
-                    <li> <Link to='/about'>About us</Link> </li>
-                    <li> <Link to='/contact'>Contact Us</Link> </li>
-                    <li> Online Status:{onlineStatus ? " Online" : " Offline"} </li>
-                    <li>Cart</li>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4">
+                    <li className="px-4"> <Link to='/'>Home</Link> </li>
+                    <li className="px-4"> <Link to='/about'>About us</Link> </li>
+                    <li className="px-4"> <Link to='/contact'>Contact Us</Link> </li>
+                    <li className="px-4"> Online Status:{onlineStatus ? " Online" : " Offline"} </li>
                 </ul>
             </div>
             <button className="login" onClick={()=>login==="LogIn"?setLogin("LogOut"):setLogin("LogIn")}>{login}</button>

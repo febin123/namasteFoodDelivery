@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from './RestaurantCard';
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Body=()=>{
 
@@ -25,9 +26,15 @@ const Body=()=>{
     }
     console.log("Body rendered")
 
-    if(listOfRestaurant.length==0){
+    // if(listOfRestaurant.length==0){
+    //     return(
+    //         <Shimmer/>
+    //     )
+    // }
+    const onlineStatus=useOnlineStatus()
+    if(useOnlineStatus===false){
         return(
-            <Shimmer/>
+            <h1>Looks like you are OFffline</h1>
         )
     }
     return(

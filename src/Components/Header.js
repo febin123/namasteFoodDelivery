@@ -5,7 +5,7 @@ const Header=()=>{
     const [login,setLogin]=useState("LogIn")
     const onlineStatus=useOnlineStatus()
     return(
-        <div className='flex justify-between bg-pink-100 shadow-lg mb-2 sm:bg-yellow-50'>
+        <div className='flex justify-between bg-pink-100 shadow-lg mb-2'>
             <div className='logo-container'> 
                 <img className='w-20' src="https://img.freepik.com/premium-vector/food-pin-app-icon-restaurant-location-logo-illustration_709422-33.jpg?w=740" alt=""/>
             </div>

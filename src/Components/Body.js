@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard, { withHeaderLabel } from './RestaurantCard';
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./useOnlineStatus";
@@ -10,10 +10,13 @@ const Body=()=>{
 
     const[searchRes,setSearchRes]=useState([])
     const[searchText,setSearchText]=useState("")
+
+    const RestaurantCardOffer=withHeaderLabel(RestaurantCard)
     useEffect(()=>{
         fetchData()
     },[])
    
+    console.log("Hello",listOfRestaurant)
     const fetchData=async()=>{
         const data= await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         
@@ -57,7 +60,8 @@ const Body=()=>{
               {
                 searchRes.map((res=>
                    <Link  key={res.info.id} to={"/restaurants/"+res.info.id}>
-                   <RestaurantCard resData={res}/>
+                
+                   {res?.info?.aggregatedDiscountInfoV3?.subHeader ? (<RestaurantCardOffer resData={res}/>):(<RestaurantCard resData={res}/>)}
                    </Link>  ))
               }
             

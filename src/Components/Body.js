@@ -61,7 +61,7 @@ const Body=()=>{
                 searchRes.map((res=>
                    <Link  key={res.info.id} to={"/restaurants/"+res.info.id}>
                 
-                   {res?.info?.aggregatedDiscountInfoV3?.subHeader ? (<RestaurantCardOffer resData={res}/>):(<RestaurantCard resData={res}/>)}
+                   {res?.info?.aggregatedDiscountInfoV3?.subHeader?.includes("UPTO") ? (<RestaurantCardOffer resData={res}/>):(<RestaurantCard resData={res}/>)}
                    </Link>  ))
               }
             

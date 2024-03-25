@@ -5,7 +5,10 @@ import ResCategory from './ResCategory'
 
 const RestaurantMenu = () => {
 
+
     const[resInfo,setResInfo]=useState(null)
+
+    const[showIndex,setShowIndex]=useState(null)
 
     const {resId}=useParams()
     useEffect(()=>{
@@ -21,15 +24,17 @@ const RestaurantMenu = () => {
     // const{itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
 
     const categories=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c?.card?.card?.["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory")
-    console.log(categories)
+    // console.log(categories)
   return (
     <div className='text-center'>
        
         <h1 className='font-bold my-6 text-2xl'>{resInfo?.cards[0]?.card?.card?.info?.name}</h1> 
          <h3 className='font-bold text-lg'>{resInfo?.cards[0]?.card?.card?.info?.avgRating} Rating</h3>
         <h3>{resInfo?.cards[0]?.card?.card?.info?.city}</h3>
-         {categories.map((category)=>(
-            <ResCategory key={category?.card?.card?.title}data={category?.card?.card}/>
+         {categories.map((category,index)=>(
+            <ResCategory key={category?.card?.card?.title}data={category?.card?.card} 
+            showItems={index === showIndex ? true : false}
+            setShowIndex={()=>setShowIndex(index)}/>
         ))} 
        
     </div>

@@ -1,9 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import useOnlineStatus from "./useOnlineStatus"
+import UserContext from "./UserContext"
 const Header=()=>{
     const [login,setLogin]=useState("LogIn")
     const onlineStatus=useOnlineStatus()
+    
+   const {loggedInUser}=useContext(UserContext)
+//    console.log(data)
     return(
         <div className='flex justify-between bg-pink-100 shadow-lg mb-2'>
             <div className='logo-container'> 
@@ -15,6 +19,7 @@ const Header=()=>{
                     <li className="px-4"> <Link to='/about'>About us</Link> </li>
                     <li className="px-4"> <Link to='/contact'>Contact Us</Link> </li>
                     <li className="px-4"> Online Status:{onlineStatus ? " Online" : " Offline"} </li>
+                    <li className="px-4 font-bold">{loggedInUser}</li>
                 </ul>
             </div>
             <button className="login" onClick={()=>login==="LogIn"?setLogin("LogOut"):setLogin("LogIn")}>{login}</button>

@@ -16,3 +16,15 @@ test('should render load header component with login button', () => {
     const loginButton=screen.getByRole("button")
     expect(loginButton).toBeInTheDocument()
  })
+
+ test('should render load header component with cart items 0', () => { 
+
+    render(
+        <BrowserRouter>
+    <Provider store={appStore}><Header/>
+    </Provider>
+    </BrowserRouter>
+    )
+    const cartItem=screen.getByText("Cart (0 items)")
+    expect(cartItem).toBeInTheDocument()
+ })
